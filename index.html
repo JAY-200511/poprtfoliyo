@@ -26,7 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth; /* ADDED FOR SMOOTH SCROLL */
+            scroll-behavior: smooth;
         }
         
         body {
@@ -34,7 +34,7 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* FIXED: Prevents horizontal scrolling */
         }
         
         .container {
@@ -51,7 +51,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 15px 0; /* Adjusted padding */
+            padding: 15px 0;
         }
         
         .header-content {
@@ -125,9 +125,9 @@
             width: 100%;
         }
 
-        /* --- MOBILE NAV STYLES --- */ /* ADDED FOR MOBILE */
+        /* --- MOBILE NAV STYLES --- */
         .menu-toggle {
-            display: none; /* Hidden by default */
+            display: none;
             background: none;
             border: none;
             font-size: 24px;
@@ -178,7 +178,6 @@
             align-items: center;
             padding-top: 80px;
             position: relative;
-            overflow: hidden;
         }
         
         .hero-content {
@@ -460,7 +459,8 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            /* FIXED: Reduced min-width to prevent overflow on small screens */
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
         }
         
@@ -648,13 +648,20 @@
         /* ----- Responsive Design ----- */
         @media (max-width: 992px) {
             .hero {
-                padding-top: 120px; /* Add padding to avoid overlap with header */
+                padding-top: 120px;
             }
             .hero-content {
-                flex-direction: column-reverse; /* Put graphic on top */
+                flex-direction: column-reverse;
                 text-align: center;
             }
             
+            /* FIXED: Constrain the graphic container on tablets */
+            .hero-graphic {
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
             .hero-text {
                 margin-top: 50px;
                 margin-bottom: 50px;
@@ -675,11 +682,11 @@
         
         @media (max-width: 768px) {
             nav ul {
-                display: none; /* Hide desktop nav */
+                display: none;
             }
 
             .menu-toggle {
-                display: block; /* Show hamburger icon */
+                display: block;
             }
             
             .hero h1 {
@@ -691,8 +698,8 @@
             }
             
             .graphic-container {
-                height: auto; /* Let content define height */
-                flex-direction: column; /* Stack code blocks */
+                height: auto;
+                flex-direction: column;
                 gap: 20px;
             }
             
@@ -700,7 +707,7 @@
                 transform: none !important;
                 position: relative;
                 width: 100%;
-                max-width: 350px; /* Set a max-width for readability */
+                max-width: 350px;
                 left: 0 !important;
                 right: 0 !important;
                 top: auto !important;
@@ -755,7 +762,8 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo" style="text-decoration: none;"> <div class="logo-icon">J</div>
+                <a href="#" class="logo" style="text-decoration: none;">
+                    <div class="logo-icon">J</div>
                     <div class="logo-text">Jay <span>Joshi</span></div>
                 </a>
                 <nav>
@@ -972,7 +980,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p class="copyright">© 2024 Jay Joshi. All Rights Reserved.</p>
+                <p class="copyright">© 2025 Jay Joshi. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -981,7 +989,6 @@
         // --- GSAP ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
         
-        // Animate elements on initial load/scroll
         gsap.utils.toArray('.section-title, .about-image, .about-text, .skill-card, .project-card, .whatsapp-container, .hero-text, .hero-graphic').forEach(element => {
             gsap.from(element, {
                 opacity: 0,
@@ -996,7 +1003,7 @@
             });
         });
 
-        // --- MOBILE MENU FUNCTIONALITY --- // ADDED FOR MOBILE
+        // --- MOBILE MENU FUNCTIONALITY ---
         const menuToggle = document.getElementById('menu-toggle');
         const mobileNav = document.getElementById('mobile-nav');
         const navLinks = mobileNav.querySelectorAll('a');
@@ -1007,15 +1014,14 @@
             if (mobileNav.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                document.body.style.overflow = 'hidden';
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
-                document.body.style.overflow = ''; // Allow scrolling
+                document.body.style.overflow = '';
             }
         });
 
-        // Close menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileNav.classList.remove('active');
