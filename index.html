@@ -26,6 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth; /* ADDED FOR SMOOTH SCROLL */
         }
         
         body {
@@ -50,7 +51,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 20px 0;
+            padding: 15px 0; /* Adjusted padding */
         }
         
         .header-content {
@@ -122,6 +123,52 @@
         
         nav a:hover:after {
             width: 100%;
+        }
+
+        /* --- MOBILE NAV STYLES --- */ /* ADDED FOR MOBILE */
+        .menu-toggle {
+            display: none; /* Hidden by default */
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1100;
+        }
+        
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .mobile-nav ul li {
+            margin: 20px 0;
+        }
+
+        .mobile-nav ul a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-family: 'Poppins', sans-serif;
         }
         
         /* Hero Section */
@@ -235,21 +282,10 @@
             font-size: 0.9rem;
         }
         
-        .code-comment {
-            color: #94a3b8;
-        }
-        
-        .code-keyword {
-            color: #f87171;
-        }
-        
-        .code-function {
-            color: #60a5fa;
-        }
-        
-        .code-value {
-            color: #34d399;
-        }
+        .code-comment { color: #94a3b8; }
+        .code-keyword { color: #f87171; }
+        .code-function { color: #60a5fa; }
+        .code-value { color: #34d399; }
         
         .circle {
             position: absolute;
@@ -418,6 +454,10 @@
         }
         
         /* Projects Section */
+        #projects {
+             background-color: var(--light-gray);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -509,7 +549,7 @@
         
         /* Contact Section */
         #contact {
-            background-color: var(--light-gray);
+            background-color: var(--light);
             text-align: center;
         }
         
@@ -605,14 +645,18 @@
             font-size: 0.9rem;
         }
         
-        /* Responsive Design */
+        /* ----- Responsive Design ----- */
         @media (max-width: 992px) {
+            .hero {
+                padding-top: 120px; /* Add padding to avoid overlap with header */
+            }
             .hero-content {
-                flex-direction: column;
+                flex-direction: column-reverse; /* Put graphic on top */
                 text-align: center;
             }
             
             .hero-text {
+                margin-top: 50px;
                 margin-bottom: 50px;
             }
             
@@ -631,7 +675,11 @@
         
         @media (max-width: 768px) {
             nav ul {
-                gap: 15px;
+                display: none; /* Hide desktop nav */
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
             }
             
             .hero h1 {
@@ -643,16 +691,21 @@
             }
             
             .graphic-container {
-                height: 400px;
+                height: auto; /* Let content define height */
+                flex-direction: column; /* Stack code blocks */
+                gap: 20px;
             }
             
             .code-block {
                 transform: none !important;
                 position: relative;
-                margin-bottom: 20px;
                 width: 100%;
+                max-width: 350px; /* Set a max-width for readability */
                 left: 0 !important;
                 right: 0 !important;
+                top: auto !important;
+                bottom: auto !important;
+                margin: 0 auto;
             }
             
             .circle {
@@ -660,25 +713,24 @@
             }
             
             .skills-container {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .projects-grid {
+                 grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 576px) {
-            nav ul {
-                display: none;
+            section {
+                padding: 80px 0;
             }
-            
             .hero h1 {
                 font-size: 2rem;
             }
             
             .hero p {
                 font-size: 1rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
             }
             
             .whatsapp-container {
@@ -688,18 +740,24 @@
             .skills-container {
                 grid-template-columns: 1fr;
             }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-content h3 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">J</div>
+                <a href="#" class="logo" style="text-decoration: none;"> <div class="logo-icon">J</div>
                     <div class="logo-text">Jay <span>Joshi</span></div>
-                </div>
+                </a>
                 <nav>
                     <ul>
                         <li><a href="#about">About</a></li>
@@ -708,16 +766,27 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
     
-    <!-- Hero Section -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Full Stack Developer &<br><span>web designer</span></h1>
+                    <h1>Full Stack Developer &<br><span>Web Designer</span></h1>
                     <p>I build scalable, efficient, and user-friendly applications that solve real-world problems. With expertise in both frontend and backend technologies, I create seamless digital experiences.</p>
                     <a href="#projects" class="cta-button">View My Work</a>
                 </div>
@@ -728,8 +797,8 @@
                         <div class="code-block top">
                             <div class="code-line"><span class="code-keyword">const</span> <span class="code-function">developer</span> = {</div>
                             <div class="code-line">&nbsp;&nbsp;name: <span class="code-value">'Jay Joshi'</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;role: <span class="code-value">'Full Stack Developer'</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;expertise: [<span class="code-value">'JavaScript'</span>, <span class="code-value">'React'</span>, <span class="code-value">'Node.js'</span>]</div>
+                            <div class="code-line">&nbsp;&nbsp;role: <span class="code-value">'Full Stack'</span>,</div>
+                            <div class="code-line">&nbsp;&nbsp;skills: [<span class="code-value">'JS'</span>, <span class="code-value">'Java'</span>, <span class="code-value">'Python'</span>]</div>
                             <div class="code-line">};</div>
                         </div>
                         <div class="code-block middle">
@@ -737,17 +806,15 @@
                             <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Build innovative solutions</span></div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">return</span> {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;design: <span class="code-value">'Modern'</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;performance: <span class="code-value">'Optimized'</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;experience: <span class="code-value">'Seamless'</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;performance: <span class="code-value">'Optimized'</span></div>
                             <div class="code-line">&nbsp;&nbsp;};</div>
                             <div class="code-line">}</div>
                         </div>
                         <div class="code-block bottom">
-                            <div class="code-line"><span class="code-comment">// Continuous learning and growth</span></div>
+                            <div class="code-line"><span class="code-comment">// Continuous learning</span></div>
                             <div class="code-line"><span class="code-keyword">while</span>(<span class="code-function">isCoding</span>()) {</div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-function">learnNewTech</span>();</div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-function">solveProblems</span>();</div>
-                            <div class="code-line">&nbsp;&nbsp;<span class="code-function">buildProjects</span>();</div>
                             <div class="code-line">}</div>
                         </div>
                     </div>
@@ -756,7 +823,6 @@
         </div>
     </section>
     
-    <!-- About Section -->
     <section id="about">
         <div class="container">
             <div class="section-title">
@@ -770,11 +836,8 @@
                 <div class="about-text">
                     <h3>Professional Software Developer</h3>
                     <p>Hello! I’m Jay Joshi, a passionate and dedicated web designer and full stack developer.</p>
-                    <p>I  specialize in building modern, responsive, and user-friendly websites and full-stack web applications. My expertise spans both front-end and back-end development, and I actively integrate AI tools and technologies into my workflow to enhance performance, personalization, and user experience.
-
-Whether it's using AI for smart UI design, form validation, chatbots, or optimizing back-end logic with intelligent algorithms, I enjoy pushing boundaries and creating innovative digital solutions.
-
-I’m always learning and exploring new frameworks, libraries, and AI integrations to stay ahead in the fast-evolving tech landscape. I love solving problems and turning ideas into clean, efficient, and impactful code.</p>
+                    <p>I specialize in building modern, responsive, and user-friendly websites and full-stack web applications. My expertise spans both front-end and back-end development, and I actively integrate AI tools and technologies into my workflow to enhance performance, personalization, and user experience.</p>
+                    <p>I’m always learning and exploring new frameworks, libraries, and AI integrations to stay ahead in the fast-evolving tech landscape. I love solving problems and turning ideas into clean, efficient, and impactful code.</p>
                     
                     <div class="qualifications">
                         <div class="qualification-card">
@@ -799,7 +862,6 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
         </div>
     </section>
     
-    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
             <div class="section-title">
@@ -807,64 +869,40 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
                 <p>Technologies and tools I specialize in</p>
             </div>
             <div class="skills-container">
-                <!-- HTML -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(227, 76, 38, 0.1); color: #E34C26;">
-                        <i class="fab fa-html5"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(227, 76, 38, 0.1); color: #E34C26;"><i class="fab fa-html5"></i></div>
                     <h3>HTML5</h3>
                     <p>Expert level proficiency</p>
                 </div>
-                
-                <!-- CSS -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(33, 76, 229, 0.1); color: #214CE5;">
-                        <i class="fab fa-css3-alt"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(33, 76, 229, 0.1); color: #214CE5;"><i class="fab fa-css3-alt"></i></div>
                     <h3>CSS3</h3>
                     <p>Advanced styling techniques</p>
                 </div>
-                
-                <!-- JavaScript -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(247, 223, 30, 0.1); color: #F7DF1E;">
-                        <i class="fab fa-js"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(247, 223, 30, 0.1); color: #F7DF1E;"><i class="fab fa-js"></i></div>
                     <h3>JavaScript</h3>
                     <p>Modern ES6+ features</p>
                 </div>
-                
-                <!-- MySQL -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(0, 117, 143, 0.1); color: #00758F;">
-                        <i class="fas fa-database"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(0, 117, 143, 0.1); color: #00758F;"><i class="fas fa-database"></i></div>
                     <h3>MySQL</h3>
                     <p>Database design & management</p>
                 </div>
-                
-                <!-- Java -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(248, 152, 32, 0.1); color: #F89820;">
-                        <i class="fab fa-java"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(248, 152, 32, 0.1); color: #F89820;"><i class="fab fa-java"></i></div>
                     <h3>Java</h3>
                     <p>Object-oriented programming</p>
                 </div>
-                
-                <!-- Python -->
                 <div class="skill-card">
-                    <div class="skill-icon" style="background-color: rgba(53, 114, 165, 0.1); color: #3572A5;">
-                        <i class="fab fa-python"></i>
-                    </div>
+                    <div class="skill-icon" style="background-color: rgba(53, 114, 165, 0.1); color: #3572A5;"><i class="fab fa-python"></i></div>
                     <h3>Python</h3>
-                    <p>Scripting & backend development</p>
+                    <p>Scripting & backend</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <div class="section-title">
@@ -886,16 +924,11 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
                             <span class="tech-tag">PHP</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/jay-200511/COLL-PROJECT7977" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://jay-200511.github.io/COLL-PROJECT7977/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
+                            <a href="https://github.com/jay-200511/COLL-PROJECT7977" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/COLL-PROJECT7977/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
-                
                 <div class="project-card">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Event Management System">
@@ -910,12 +943,8 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
                             <span class="tech-tag">MySQL</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/jay-200511/event-management" class="project-link" target="_blank">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                            <a href="https://jay-200511.github.io/event-management/" class="project-link" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
+                            <a href="https://github.com/jay-200511/event-management" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/event-management/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
@@ -923,7 +952,6 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
         </div>
     </section>
     
-    <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="section-title">
@@ -931,9 +959,7 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
                 <p>Have a project in mind or want to discuss opportunities?</p>
             </div>
             <div class="whatsapp-container">
-                <div class="whatsapp-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
+                <div class="whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
                 <h3>Contact me on WhatsApp</h3>
                 <p>For direct communication and quick responses, feel free to message me on WhatsApp. I'm available for project discussions, collaborations, and new opportunities.</p>
                 <a href="https://wa.me/917977668088" class="whatsapp-link" target="_blank">
@@ -943,63 +969,59 @@ I’m always learning and exploring new frameworks, libraries, and AI integratio
         </div>
     </section>
     
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                
                 <p class="copyright">© 2024 Jay Joshi. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
     
     <script>
-        // Initialize GSAP animations
+        // --- GSAP ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
         
-        // Animate elements on scroll
-        gsap.utils.toArray('.hero-text, .hero-graphic').forEach((element, index) => {
+        // Animate elements on initial load/scroll
+        gsap.utils.toArray('.section-title, .about-image, .about-text, .skill-card, .project-card, .whatsapp-container, .hero-text, .hero-graphic').forEach(element => {
             gsap.from(element, {
                 opacity: 0,
                 y: 50,
-                duration: 1,
-                delay: index * 0.3,
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top center'
-                }
-            });
-        });
-        
-        // Animate section elements
-        gsap.utils.toArray('.section-title, .about-image, .about-text, .skill-card, .project-card, .whatsapp-container').forEach(element => {
-            gsap.from(element, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
+                duration: 0.8,
+                ease: 'power3.out',
                 scrollTrigger: {
                     trigger: element,
-                    start: 'top 80%'
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
                 }
             });
         });
-        
-        // Add subtle hover animations to skill cards
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                gsap.to(card, {
-                    scale: 1.05,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    scale: 1,
-                    duration: 0.3,
-                    ease: "power2.out"
-                });
+
+        // --- MOBILE MENU FUNCTIONALITY --- // ADDED FOR MOBILE
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const navLinks = mobileNav.querySelectorAll('a');
+
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (mobileNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = ''; // Allow scrolling
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
             });
         });
     </script>
