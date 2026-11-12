@@ -34,7 +34,7 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
-            overflow-x: hidden; /* FIXED: Prevents horizontal scrolling */
+            overflow-x: hidden;
         }
         
         .container {
@@ -406,7 +406,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
@@ -459,7 +459,6 @@
 
         .projects-grid {
             display: grid;
-            /* FIXED: Reduced min-width to prevent overflow on small screens */
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
         }
@@ -655,7 +654,6 @@
                 text-align: center;
             }
             
-            /* FIXED: Constrain the graphic container on tablets */
             .hero-graphic {
                 width: 100%;
                 max-width: 500px;
@@ -794,8 +792,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Web Developer <br><span>Web Designer</span></h1>
-                    <p>I build scalable, efficient, and user-friendly applications that solve real-world problems. With expertise in both frontend and backend technologies, I create seamless digital experiences.</p>
+                    <h1>Web Developer <br><span>Cloud & Web Designer</span></h1>
+                    <p>I build scalable, efficient, and user-friendly applications that solve real-world problems. With expertise in frontend, backend, and cloud computing technologies, I create seamless digital experiences that leverage the power of the cloud.</p>
                     <a href="#projects" class="cta-button">View My Work</a>
                 </div>
                 <div class="hero-graphic">
@@ -814,7 +812,7 @@
                             <div class="code-line">&nbsp;&nbsp;<span class="code-comment">// Build innovative solutions</span></div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-keyword">return</span> {</div>
                             <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;design: <span class="code-value">'Modern'</span>,</div>
-                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;performance: <span class="code-value">'Optimized'</span></div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;cloud: <span class="code-value">'Deployed'</span></div>
                             <div class="code-line">&nbsp;&nbsp;};</div>
                             <div class="code-line">}</div>
                         </div>
@@ -822,7 +820,7 @@
                             <div class="code-line"><span class="code-comment">// Continuous learning</span></div>
                             <div class="code-line"><span class="code-keyword">while</span>(<span class="code-function">isCoding</span>()) {</div>
                             <div class="code-line">&nbsp;&nbsp;<span class="code-function">learnNewTech</span>();</div>
-                            <div class="code-line">&nbsp;&nbsp;<span class="code-function">solveProblems</span>();</div>
+                            <div class="code-line">&nbsp;&nbsp;<span class="code-function">deployToCloud</span>();</div>
                             <div class="code-line">}</div>
                         </div>
                     </div>
@@ -842,10 +840,10 @@
                     <img src="jay joshi.png" alt="Jay Joshi">
                 </div>
                 <div class="about-text">
-                    <h3>Professional Web Developer </h3>
-                    <p>Hello! I’m Jay Joshi, a passionate and dedicated web designer and  developer.</p>
-                    <p>I specialize in building modern, responsive, and user-friendly websites . My expertise spans both front-end and back-end development, and I actively integrate AI tools and technologies into my workflow to enhance performance, personalization, and user experience.</p>
-                    <p>I’m always learning and exploring new frameworks, libraries, and AI integrations to stay ahead in the fast-evolving tech landscape. I love solving problems and turning ideas into clean, efficient, and impactful code.</p>
+                    <h3>Professional Web Developer & Cloud Enthusiast</h3>
+                    <p>Hello! I'm Jay Joshi, a passionate and dedicated web designer, developer, and cloud computing enthusiast.</p>
+                    <p>I specialize in building modern, responsive, and user-friendly websites with cloud-powered infrastructure. My expertise spans both front-end and back-end development, and I actively integrate AI tools and cloud technologies into my workflow to enhance performance, personalization, and user experience.</p>
+                    <p>I have hands-on experience with cloud computing — deploying applications, managing cloud infrastructure, and leveraging cloud services for scalable and reliable solutions. I'm always learning and exploring new frameworks, libraries, AI integrations, and cloud platforms to stay ahead in the fast-evolving tech landscape. I love solving problems and turning ideas into clean, efficient, and impactful code.</p>
                     
                     <div class="qualifications">
                         <div class="qualification-card">
@@ -858,11 +856,13 @@
                             <p>Web Design & Development (2023-2024)</p>
                             <p>Ethical Hacking (2023-2024)</p>
                             <p>Generative AI (By Microsoft 2024-2025)</p>
+                            <p>Cloud Computing Certification (gcp) (2026 march-2026 september)</p>
                         </div>
                         <div class="qualification-card">
                             <h4>Specialization</h4>
                             <p>Web Development</p>
                             <p>Web Designing</p>
+                            <p>Cloud Computing(gcp)</p>
                         </div>
                     </div>
                 </div>
@@ -880,28 +880,26 @@
                 <div class="skill-card">
                     <div class="skill-icon" style="background-color: rgba(227, 76, 38, 0.1); color: #E34C26;"><i class="fab fa-html5"></i></div>
                     <h3>HTML5</h3>
-                    
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon" style="background-color: rgba(33, 76, 229, 0.1); color: #214CE5;"><i class="fab fa-css3-alt"></i></div>
                     <h3>CSS3</h3>
-                    
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon" style="background-color: rgba(247, 223, 30, 0.1); color: #F7DF1E;"><i class="fab fa-js"></i></div>
                     <h3>JavaScript</h3>
-                    
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon" style="background-color: rgba(0, 117, 143, 0.1); color: #00758F;"><i class="fas fa-database"></i></div>
                     <h3>MySQL</h3>
-                    
                 </div>
-              
                 <div class="skill-card">
                     <div class="skill-icon" style="background-color: rgba(53, 114, 165, 0.1); color: #3572A5;"><i class="fab fa-python"></i></div>
                     <h3>Python</h3>
-                    
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon" style="background-color: rgba(0, 119, 181, 0.1); color: #0077B5;"><i class="fas fa-cloud"></i></div>
+                    <h3>Cloud Computing(gcp)</h3>
                 </div>
             </div>
         </div>
@@ -915,63 +913,51 @@
             </div>
             <div class="projects-grid">
                 <div class="project-card">
-                   
                     <div class="project-content">
                         <h3>pmr-ngo</h3>
-                        
                         <div class="project-tech">
                             <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>   
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/JAY-200511/pmr-ngo" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                            <a href=" https://jay-200511.github.io/pmr-ngo/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://jay-200511.github.io/pmr-ngo/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
-                 <div class="project-card">
-                    
-                   
+                <div class="project-card">
                     <div class="project-content">
                         <h3>miniq.ai</h3>
-                        
                         <div class="project-tech">
                             <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>
-                            
                         </div>
                         <div class="project-links">
-                            <a href=" https://github.com/JAY-200511/MiniqAi.me" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                            <a href=" https://jay-200511.github.io/MiniqAi.me/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/JAY-200511/MiniqAi.me" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/MiniqAi.me/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
-                 <div class="project-card">
-                  
+                <div class="project-card">
                     <div class="project-content">
                         <h3>Smartsparkwebs</h3>
-                       
                         <div class="project-tech">
                             <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>
-                            
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/JAY-200511/Smartsparkwebs" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                            <a href=" https://jay-200511.github.io/Smartsparkwebs/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://jay-200511.github.io/Smartsparkwebs/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
                 </div>
-                 <div class="project-card">
-                   
+                <div class="project-card">
                     <div class="project-content">
                         <h3>Canteen Management System</h3>
-                       
                         <div class="project-tech">
                             <span class="tech-tag">HTML/CSS</span>
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">MySQL</span>
-                           
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/jay-200511/COLL-PROJECT7977" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
@@ -979,7 +965,54 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- NEW PROJECT: JP Infra -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>JP Infra</h3>
+                        <p>A modern infrastructure/construction company website showcasing services, projects, and company profile.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Cloud Hosted</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JAY-200511/jp-infra-" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/jp-infra-/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEW PROJECT: Eabags -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Eabags</h3>
+                        <p>An e-commerce style bags website with product showcase, responsive design, and modern UI.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Cloud Hosted</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JAY-200511/eabags" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/eabags/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEW PROJECT: Cafe Site -->
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Cafe Site</h3>
+                        <p>A stylish cafe/restaurant website featuring menu, gallery, and contact sections with modern design.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Cloud Hosted</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/JAY-200511/cafe-site-" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://jay-200511.github.io/cafe-site-/" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1004,7 +1037,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p class="copyright">© 2025 Jay Joshi. All Rights Reserved.</p>
+                <p class="copyright">© 2026 Jay Joshi. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
